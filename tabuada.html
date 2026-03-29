@@ -5,36 +5,75 @@
     <title>Minha Tabuada</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to right, #a1c4fd, #c2e9fb);
             text-align: center;
             margin-top: 50px;
+            transition: background 0.5s, color 0.5s;
         }
         h2 {
             color: #1e90ff;
+            text-shadow: 2px 2px #fff;
         }
         input, button {
             padding: 10px;
             margin: 10px;
             font-size: 16px;
+            border-radius: 8px;
+            border: none;
+        }
+        button {
+            background-color: #1e90ff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4682b4;
         }
         ul {
             list-style-type: none;
             padding: 0;
         }
         li {
-            background: #e6f2ff;
             margin: 5px auto;
             padding: 10px;
-            width: 200px;
+            width: 220px;
             border-radius: 8px;
             font-weight: bold;
             color: #333;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.5s forwards;
         }
+        li:nth-child(odd) { background-color: #d0f0c0; }
+        li:nth-child(even) { background-color: #f0fff0; }
         footer {
             margin-top: 20px;
             font-style: italic;
             color: #555;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 🌙 Tema escuro */
+        body.dark {
+            background: linear-gradient(to right, #232526, #414345);
+            color: #eee;
+        }
+        body.dark h2 {
+            color: #ffcc00;
+            text-shadow: none;
+        }
+        body.dark li:nth-child(odd) { background-color: #444; color: #eee; }
+        body.dark li:nth-child(even) { background-color: #555; color: #eee; }
+        body.dark footer { color: #ccc; }
+        body.dark button {
+            background-color: #ffcc00;
+            color: #333;
+        }
+        body.dark button:hover {
+            background-color: #e6b800;
         }
     </style>
 </head>
@@ -43,6 +82,7 @@
     <p>Digite um número de 1 a 10:</p>
     <input type="number" id="numero" min="1" max="10" required>
     <button onclick="gerarTabuada()">Gerar Tabuada</button>
+    <button onclick="alternarTema()">🌙 Alternar Tema</button>
 
     <div id="resultado"></div>
 
@@ -56,11 +96,16 @@
             const num = document.getElementById("numero").value;
             let html = `<h3>Tabuada do ${num}</h3><ul>`;
             for (let i = 1; i <= 10; i++) {
-                html += `<li>${num} x ${i} = ${num * i}</li>`;
+                html += `<li style="animation-delay:${i*0.1}s">${num} x ${i} = ${num * i}</li>`;
             }
             html += "</ul>";
             document.getElementById("resultado").innerHTML = html;
         }
+
+        function alternarTema() {
+            document.body.classList.toggle("dark");
+        }
     </script>
 </body>
 </html>
+
