@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Tabuada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h2 {
+            color: #1e90ff;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #e6f2ff;
+            margin: 5px auto;
+            padding: 10px;
+            width: 200px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        footer {
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h2>Bem vindo à minha Tabuada</h2>
+    <p>Digite um número de 1 a 10:</p>
+    <input type="number" id="numero" min="1" max="10" required>
+    <button onclick="gerarTabuada()">Gerar Tabuada</button>
+
+    <div id="resultado"></div>
+
+    <footer>
+        Obrigado por utilizar minha tabuada!<br>
+        Projetada por: Luciene
+    </footer>
+
+    <script>
+        function gerarTabuada() {
+            const num = document.getElementById("numero").value;
+            let html = `<h3>Tabuada do ${num}</h3><ul>`;
+            for (let i = 1; i <= 10; i++) {
+                html += `<li>${num} x ${i} = ${num * i}</li>`;
+            }
+            html += "</ul>";
+            document.getElementById("resultado").innerHTML = html;
+        }
+    </script>
+</body>
+</html>
